@@ -2,22 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Function</title>
+<title>Untitled Document</title>
 </head>
 
 <body>
-<?php
-function makeconnection()
-{
-	$cn=mysqli_connect("localhost","root","","travel");
-	if(mysqli_connect_errno())
-	{
-		echo "failed to connect to mysqli:".mysqli_connect_error();
-	}
-	return $cn;
-}
 
-$cn=mysqli_connect("localhost","root","","travel");
+<?php include('function.php'); ?>
+<?php
+
+	$cn=makeconnection();
+	$s="update enquiry set statusfield='Confirm' where enquiryid='" . $_GET["eid"] . "'";
+	mysqli_query($cn,$s);
+	mysqli_close($cn);
+header("location:viewenquiry.php");
 ?>
 </body>
 </html>
